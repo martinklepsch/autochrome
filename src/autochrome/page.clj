@@ -10,7 +10,7 @@
             [hiccup.page :as hp]
             [om.dom :as dom])
   (:import [java.security MessageDigest]
-           [java.util Base64]))
+           [org.apache.commons.codec.binary Hex]))
 
 (defn clojure-file?
   [s]
@@ -63,7 +63,7 @@
   [s]
   (->> (.digest (MessageDigest/getInstance "MD5")
                 (.getBytes s))
-       (.encodeToString (Base64/getEncoder))
+       (Hex/encodeHexString)
        (.toLowerCase)))
 
 (defn render-top-level-form
