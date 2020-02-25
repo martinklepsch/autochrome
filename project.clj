@@ -10,9 +10,7 @@
                  [cheshire "5.10.0"]
                  [clj-http "3.10.0"]
                  [org.clojure/tools.cli "1.0.194"]
-                 [com.climate/claypoole "1.1.4"]
-                 ;; explicit dependency on jaxb-api for java 9 compatibility
-                 [javax.xml.bind/jaxb-api "2.3.0"]]
+                 [com.climate/claypoole "1.1.4"]]
   :main autochrome.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})

@@ -10,7 +10,7 @@
             [hiccup.page :as hp]
             [om.dom :as dom])
   (:import [java.security MessageDigest]
-           [javax.xml.bind DatatypeConverter]))
+           [java.util Base64]))
 
 (defn clojure-file?
   [s]
@@ -61,11 +61,10 @@
 
 (defn md5sum
   [s]
-  (-> (MessageDigest/getInstance "MD5")
-      (.digest (.getBytes s))
-      ;; https://stackoverflow.com/a/25758008
-      DatatypeConverter/printHexBinary
-      (.toLowerCase)))
+  (->> (.digest (MessageDigest/getInstance "MD5")
+                (.getBytes s))
+       (.encodeToString (Base64/getEncoder))
+       (.toLowerCase)))
 
 (defn render-top-level-form
   [form]
