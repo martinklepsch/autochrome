@@ -43,3 +43,12 @@
   [& args]
   (apply do-main args)
   (shutdown-agents))
+
+(comment
+  (def dir "/Users/martinklepsch/code/github.com/martinklepsch/autochrome-action")
+  (def p {:id 376290161, :base "71f74d92c60738db7257230ec7cfb8de681ac6c3", :head "d500d244fb7bd7d3c261e64aa0f609c7fbeb997b"})
+
+  (binding [github/*git-dir* (or dir ".")]
+    (page/local-diff (:base p) (:head p)))
+
+  )
